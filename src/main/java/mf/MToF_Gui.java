@@ -45,9 +45,9 @@ public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents
         Button buttonCalculate = new Button("\"Convert to feet'-inch\\\": \"");
 
         buttonCalculate.addClickListener((event -> {
-           // textFieldEqualsFeet.setValue(String.valueOf(meters_feets.getDimmInFeet(numberFieldMeters.getValue(), numberFieldCms.getValue())));
-          textFieldEqualsFeet.setValue((meters_feets.calculateBmi(numberFieldMeters.getValue(),numberFieldCms.getValue())));
-      //  textFieldEqualsInch.setValue(String.valueOf(meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue())));
+           textFieldEqualsFeet.setValue(String.valueOf(meters_feets.getDimmInFeet(numberFieldMeters.getValue(), numberFieldCms.getValue())));
+          //textFieldEqualsFeet.setValue((meters_feets.calculateBmi(numberFieldMeters.getValue(),numberFieldCms.getValue())));
+       textFieldEqualsInch.setValue(String.valueOf(meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue())));
         }));
 
            add(numberFieldMeters, numberFieldCms, textFieldEqualsFeet, textFieldEqualsFeet,buttonCalculate);

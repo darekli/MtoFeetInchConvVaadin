@@ -12,7 +12,8 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("mtf")
-public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents {
+//public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents {
+public class MToF_Gui extends VerticalLayout implements HasComponents {
 
     Meters_Feets meters_feets;
 
@@ -39,10 +40,10 @@ public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents
         numberFieldCms.setMin(1);
         numberFieldCms.setMax(99);
         //  Button buttonValueMCmInput = new Button("Your input value: ");
-        TextField textFieldEqualsFeet = new TextField(" feet'-inch\": ");
-        TextField textFieldEqualsInch = new TextField(" feet'-inch\": ");
+        TextField textFieldEqualsFeet = new TextField(" feet' ");
+        TextField textFieldEqualsInch = new TextField(" inch\" ");
 
-        Button buttonCalculate = new Button("\"Convert to feet'-inch\\\": \"");
+        Button buttonCalculate = new Button("\"Convert to feet'-inch\": ");
 
         buttonCalculate.addClickListener((event -> {
            textFieldEqualsFeet.setValue(String.valueOf(meters_feets.getDimmInFeet(numberFieldMeters.getValue(), numberFieldCms.getValue())));
@@ -50,7 +51,7 @@ public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents
        textFieldEqualsInch.setValue(String.valueOf(meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue())));
         }));
 
-           add(numberFieldMeters, numberFieldCms, textFieldEqualsFeet, textFieldEqualsFeet,buttonCalculate);
+           add(numberFieldMeters, numberFieldCms, textFieldEqualsFeet, textFieldEqualsFeet,textFieldEqualsInch,buttonCalculate);
     }
 }
 

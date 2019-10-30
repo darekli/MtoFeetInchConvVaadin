@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.HasComponents;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -12,8 +13,8 @@ import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("mtf")
-//public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents {
-public class MToF_Gui extends VerticalLayout implements HasComponents {
+public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents {
+
 
     Meters_Feets meters_feets;
 
@@ -23,7 +24,7 @@ public class MToF_Gui extends VerticalLayout implements HasComponents {
 
         H1 header = new H1("Meters to feet\'-inch\" converter");
 
-        // Image image = new Image("https://truckeron.eu/files/pics/truckeron/signsLimit.jpg", "image");
+       Image image = new Image("https://truckeron.eu/files/pics/truckeron/signsLimit.jpg", "image");
         header.setWidth("100%");
         add(header);
 
@@ -32,12 +33,12 @@ public class MToF_Gui extends VerticalLayout implements HasComponents {
         NumberField numberFieldMeters = new NumberField("Meters:");
        // numberFieldMeters.setValue(1d);
         numberFieldMeters.setHasControls(true);
-        numberFieldMeters.setMin(1);
+        numberFieldMeters.setMin(0);
         numberFieldMeters.setMax(99);
 
         NumberField numberFieldCms = new NumberField("Centimeters:");
         numberFieldCms.setHasControls(true);
-        numberFieldCms.setMin(1);
+        numberFieldCms.setMin(0);
         numberFieldCms.setMax(99);
         //  Button buttonValueMCmInput = new Button("Your input value: ");
         TextField textFieldEqualsFeet = new TextField(" feet' ");
@@ -46,12 +47,13 @@ public class MToF_Gui extends VerticalLayout implements HasComponents {
         Button buttonCalculate = new Button("\"Convert to feet'-inch\": ");
 
         buttonCalculate.addClickListener((event -> {
-           textFieldEqualsFeet.setValue(String.valueOf(meters_feets.getDimmInFeet(numberFieldMeters.getValue(), numberFieldCms.getValue())));
+           textFieldEqualsFeet.setValue(String.valueOf(Integer.valueOf((int) meters_feets.getDimmInFeet(numberFieldMeters.getValue(), numberFieldCms.getValue()))));
           //textFieldEqualsFeet.setValue((meters_feets.calculateBmi(numberFieldMeters.getValue(),numberFieldCms.getValue())));
-       textFieldEqualsInch.setValue(String.valueOf(meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue())));
+       textFieldEqualsInch.setValue(String.valueOf(Integer.valueOf((int) meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue()))));
         }));
 
            add(numberFieldMeters, numberFieldCms, textFieldEqualsFeet, textFieldEqualsFeet,textFieldEqualsInch,buttonCalculate);
+           add(image);
     }
 }
 

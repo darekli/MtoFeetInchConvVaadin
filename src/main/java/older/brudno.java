@@ -27,7 +27,6 @@ public class brudno {
         double mToFInch = (meters +centimeters/100)/1D;
 
 
-
         System.out.println(ss);
         System.out.println(bbb);
 
@@ -37,6 +36,19 @@ public class brudno {
         System.out.println(mToFdInch+"ljkl");
         System.out.println(qqq);
         System.out.println(mToFInch);
+
+        //4.24m =13'11"  = 13.91076
+double foot1 = 14;
+double inch1 =0;
+        final double inchRatio1 = 0.0833333333333;
+        final double ratioMtoF1 = 3.2808399;
+        final double ratioFItoM1 = 0.3048;
+        final double ratioInchToFeet = 0.0254;
+
+        double meters1= foot1*ratioFItoM1 + inch1 * 0.0254;
+        System.out.println(meters1);
+
+
 
     }
 

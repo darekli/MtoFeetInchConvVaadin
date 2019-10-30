@@ -60,8 +60,10 @@ public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents
             textField1To1Convertion.setValue(meters_feets.getOneOneConvertionMToF(numberFieldMeters.getValue(), numberFieldCms.getValue()));
         }));
         add(textField1To1Convertion);
-
+        H1 header2 = new H1("Foot\'-inch\" to meters converter");
+        add(header2);
         //feet to meters
+
 
         NumberField numberFieldFoot = new NumberField("Foots:");
         // numberFieldMeters.setValue(1d);
@@ -89,40 +91,3 @@ add(numberFieldFoot,numberFieldInch,textFieldEqualsMeters);
 
     }
 }
-
-
-
-
-
-
-
-
-
-       // Button wynik = new Button("Convert to feet'-inch\": ");
-        //equals = new TextField("Wynik");
-//        Label labelMCm = new Label();
-//        Label labelWynik = new Label();
-
-//        buttonValueMCmInput.addClickListener(ClickEvent -> {
-//            labelMCm.setText(" " + " Your input value: " + numberFieldMeters.getValue() + " m " + numberFieldCms.getValue() + " numberField");
-//        });//todo dzialaoo
-//        wynik.addClickListener(ClickEvent -> {
-//            labelMCm.setText("53563564356 " + "  "+meters_feets.ratioMtoF+"'-"+meters_feets.inches+"\"");
-//        });
-//
-//        wynik.addClickListener(ClickEvent -> {
-//labelWynik.setText("Feet inch "+ (numberFieldMeters.getValue()*100+numberFieldCms.getValue())* mToFUtil.getDimmInFeet());
-        //    labelWynik.setText("Feet inch "+ mToFUtil.getDimmInFeet(numberFieldMeters.getValue(),numberFieldCms.getValue()));
-
-//        double sumInMetters = (((numberFieldMeters.getValue()*100)+(numberFieldCms.getValue()))/100);
-////        double bbb = mToFUtil.getDimmInFeet();
-//          labelWynik.setText("Wynik: "+sumInMetters+ "bbb "+bbb);//todo dzialaolo
-           // labelWynik.setText("Wynikkhkjhkjhkljlk: "+mToFUtil.getDimmInFeet());//todo dzialaolo
-//        });
-//
-//
-//        add(numberFieldMeters, (Component) numberFieldCms, buttonValueMCmInput, wynik, labelMCm,labelWynik);
-//        //add(image);
-//
-//    }
-//    }

@@ -1,4 +1,4 @@
-package dareklimtofeet;
+package mf;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

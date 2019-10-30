@@ -5,9 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class Meters_Feets {
 
-    final double ratioMtoF = 3.2808399;
-    final double ratioFItoM = 0.3048006096012;
+//    final double ratioMtoF = 3.2808399;
+//    final double ratioFItoM = 0.3048006096012;
     final double inchRatio = 0.0833333333333;
+//STATUTORY INSTRUMENTS
+//
+//1995 No. 1804
+//WEIGHTS AND MEASURES
+//
+//The Units of Measurement Regulations 1995
+    final double ratioMtoF = 3.2808399;
+    final double ratioFItoM = 0.3048;
+
 
 
     public double getDimmInFeet(Double meters, Double centimeters) {
@@ -36,11 +45,11 @@ public class Meters_Feets {
       return String.valueOf(mToFInch);
     }
 
-    double bmi;
-    public String calculateBmi(Double height2, Double weigth2){
-            bmi = (Double.parseDouble(String.valueOf(weigth2)) / Math.pow(Double.parseDouble(String.valueOf(height2)) / 100.00, 2));
-        return String.valueOf(bmi);
+    public String getDimInMeters(Double foot, Double inch) {
+      double meters= foot*ratioFItoM + inch * inchRatio;
+            return String.valueOf(meters);
         }
+
     }
 
 

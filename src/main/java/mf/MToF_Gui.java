@@ -52,8 +52,18 @@ public class MToF_Gui extends Composite<VerticalLayout> implements HasComponents
        textFieldEqualsInch.setValue(String.valueOf(Integer.valueOf((int) meters_feets.getLeftDimmInInch(numberFieldMeters.getValue(),numberFieldCms.getValue()))));
         }));
 
+
            add(numberFieldMeters, numberFieldCms, textFieldEqualsFeet, textFieldEqualsFeet,textFieldEqualsInch,buttonCalculate);
-           add(image);
+
+
+        TextField textField1To1Convertion = new TextField("Feet'\"- inch\" ");
+        Button buttonCalculate1To1 = new Button("\"Convert to feet'-inch\": ");
+        buttonCalculate.addClickListener((event -> {
+            textField1To1Convertion.setValue(meters_feets.getOneOneConvertionMToF(numberFieldMeters.getValue(),numberFieldCms.getValue()));
+                }));
+
+
+        add(textField1To1Convertion,buttonCalculate1To1,image);
     }
 }
 

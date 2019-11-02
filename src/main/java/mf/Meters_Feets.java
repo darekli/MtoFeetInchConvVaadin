@@ -45,8 +45,9 @@ public class Meters_Feets {
 
     public String getDimInMeters(Double foot, Double inch) {
       double meters= foot*ratioFItoM + inch * ratioInchToFeet;
-            return String.valueOf(meters);
-
+        String StringMeters2f = String.format("%.3f", meters);
+           // return String.valueOf(meters);
+return StringMeters2f;
         }
     }
 

@@ -1,19 +1,19 @@
 package dareklimtofeet;
 
-import mf.Meters_Feets;
+import mf.MToF_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 //@Service
 public class FeetsIntoMetersConverter {
 
-    private Meters_Feets meters_feets;
+    private MToF_Service meters_feets;
     private int myFeet;
     private int myInch;
 
 
 
     @Autowired
-    public FeetsIntoMetersConverter(Meters_Feets meters_feets) {
+    public FeetsIntoMetersConverter(MToF_Service meters_feets) {
         this.meters_feets = meters_feets;
     }
 

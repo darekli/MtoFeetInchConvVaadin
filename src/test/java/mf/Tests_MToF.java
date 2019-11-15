@@ -3,7 +3,7 @@ package mf;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
-public class DimmInFeetTests {
+public class Tests_MToF {
 
     @Test
     public void Test_should_meters_centimeters_be_Foot() {
@@ -43,23 +43,23 @@ public class DimmInFeetTests {
         Assert.assertEquals(10, inches6);
     }
 
-    @Test
-    public void Test_should_foot_and_inch_be_meters() {
+  //  @Test
+  //  public void Test_should_foot_and_inch_be_meters() {
         //given
-        MToF_Service mToF_service = new MToF_Service();
+  //      MToF_Service mToF_service = new MToF_Service();
         //when
-        String meters = mToF_service.getDimInMeters(3.0, 56.0);
+ //       String meters = mToF_service.getDimInMeters(3.0, 56.0);
 //        String meters2 = mToF_service.getDimInMeters(12.0, 11.0);
 //        String meters3 = mToF_service.getDimInMeters(13.0, 0.0);
 //        String meters4 = mToF_service.getDimInMeters(14.0, 0.0);
 //        String meters5 = mToF_service.getDimInMeters(15.0, 1.0);
 
         //then//todo
-     Assert.assertEquals(new String(String.valueOf(2.34)),new String(meters));
+    // Assert.assertEquals(new String(String.valueOf(2.34)),new String(meters));
 //        Assert.assertEquals(2.94, meters2);
 //        Assert.assertEquals(2.96, meters3);
 //        Assert.assertEquals(4.27, meters4);
 //        Assert.assertEquals(4.60, meters5);
 
-    }
+   // }
 }

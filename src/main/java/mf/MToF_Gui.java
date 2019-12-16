@@ -9,26 +9,39 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.i18n.LocaleChangeEvent;
+import com.vaadin.flow.i18n.LocaleChangeObserver;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+
+import java.util.Locale;
+
+import static java.util.Locale.forLanguageTag;
 
 @Route("mtf")
 @StyleSheet("/style.css")
-public class MToF_Gui extends VerticalLayout implements QuickReturn {
+@Configurable
 
+public class MToF_Gui extends VerticalLayout {
+    private MessageSource messageSource;
 
     MToF_Service mToF_service;
 
     @Autowired
-    public MToF_Gui(MToF_Service meters_feets) {
-
+    public MToF_Gui(MessageSource messageSource, MToF_Service meters_feets) {
+        //this.messageSource = messageSource;
         this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         setAlignItems(Alignment.CENTER);
         H2 header = new H2("Meters to feet\'-inches\" converter\n for drivers\" ");
         Image imageTop = new Image("https://truckeron.eu/files/pics/truckeron/truckerLogoAff_small.svg", "image");
         imageTop.setWidth("10%");
-        add(addButtonBack(), imageTop);
+        add(imageTop);  //addButtonBack()
 
         setAlignItems(Alignment.CENTER);
         Image image = new Image("https://truckeron.eu/files/pics/truckeron/lowBridge4Zero.jpg", "image");
@@ -73,11 +86,13 @@ public class MToF_Gui extends VerticalLayout implements QuickReturn {
                 "• HEIGHT • no limit, but wherever possible a maximum of 4.95 metres should be adhered to in\n" +
                 "order to make maximum use of the motorway and trunk road network."));
 
-        Button calculate;
-        calculate = new Button("Conversion");
 
-        calculate.addClickListener((event -> {
-            equalsFoot.setText(String.valueOf((int) meters_feets.getDimmInFoot(meters.getValue(), cms.getValue())));
+        Button buttonCalculate;
+      //  buttonCalculate = new Button(messageSource.getMessage("btn", new Object[]{}, Locale.forLanguageTag("pl")));
+        buttonCalculate = new Button("Calculate");
+        buttonCalculate.addClickListener((event -> {
+            equalsFoot.setText(String.valueOf(
+                    (int) meters_feets.getDimmInFoot(meters.getValue(), cms.getValue())));
             equalsInch.setText(String.valueOf(Integer.valueOf((int) meters_feets.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
         }));
 
@@ -86,7 +101,7 @@ public class MToF_Gui extends VerticalLayout implements QuickReturn {
         HorizontalLayout equalsFInchLayout = new HorizontalLayout(equalsFoot, equalsInch);
         add(equalsFInchLayout);
 
-        add(infoAboutFootInch, infoAboutRoadVehiclesUK, calculate);
+        add(infoAboutFootInch, infoAboutRoadVehiclesUK, buttonCalculate);
 
         H2 header2 = new H2("Feet'-inches\" to meters converter");
         setAlignItems(Alignment.CENTER);
@@ -128,7 +143,9 @@ public class MToF_Gui extends VerticalLayout implements QuickReturn {
         setAlignItems(Alignment.CENTER);
 
         add(buttonCalculateToMeters, image);
-        add(addButtonBack());
+        //add(addButtonBack());
+
+
     }
 
 

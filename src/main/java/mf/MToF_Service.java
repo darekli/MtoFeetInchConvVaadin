@@ -18,7 +18,7 @@ public class MToF_Service {
     final double ratioFItoM = 0.3048;
 
 
-    public double getDimmInFoot(Double meters, Double centimeters) {
+    public double getDimmInFoot(double meters, double centimeters) {
         int foot = (int) Math.ceil((((meters + (centimeters / 100)) * ratioMtoF) % 1) * 12);
         double footFloor = Math.floor((meters + (centimeters / 100)) * ratioMtoF);
         if (foot == 12) {
@@ -28,7 +28,7 @@ public class MToF_Service {
         }
     }
 
-    public double getLeftDimmInInch(Double meters, Double centimeters) {
+    public double getLeftDimmInInch(double meters, double centimeters) {
         int inches = (int) Math.ceil((((meters + (centimeters / 100)) * ratioMtoF) % 1) * 12);
         if (inches == 12) {
             return 0;
@@ -37,11 +37,13 @@ public class MToF_Service {
         }
     }
 
-    public String getDimInMeters(Double foot, Double inch) {
+    public String getDimInMeters(double foot, double inch) {
         double meters = foot * ratioFItoM + inch * ratioInchToFoot;
         String StringMeters2f = String.format("%.2f", meters);
-        return StringMeters2f;
+        return String.valueOf(StringMeters2f);
+        //return meters; //for tests only
     }
+
 
 }
 

@@ -91,8 +91,8 @@ public class MToF_Gui extends VerticalLayout {
       //  buttonCalculate = new Button(messageSource.getMessage("btn", new Object[]{}, Locale.forLanguageTag("pl")));
         buttonCalculate = new Button("Calculate");
         buttonCalculate.addClickListener((event -> {
-            equalsFoot.setText(String.valueOf(
-                    (int) meters_feets.getDimmInFoot(meters.getValue(), cms.getValue())));
+            equalsFoot.setText(
+                    String.valueOf((int) meters_feets.getDimmInFoot(meters.getValue(), cms.getValue())));
             equalsInch.setText(String.valueOf(Integer.valueOf((int) meters_feets.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
         }));
 
@@ -126,7 +126,7 @@ public class MToF_Gui extends VerticalLayout {
         Button buttonCalculateToMeters = new Button("Conversion");
 
         buttonCalculateToMeters.addClickListener((event -> {
-            equalsMeters.setText(meters_feets.getDimInMeters(numberFieldFoot.getValue(), numberFieldInch.getValue()));
+            equalsMeters.setText(String.valueOf(meters_feets.getDimInMeters(numberFieldFoot.getValue(), numberFieldInch.getValue())));
         }));
 
         setAlignItems(Alignment.CENTER);

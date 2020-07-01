@@ -1,4 +1,4 @@
-package mf;
+package mf.app;
 
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.button.Button;
@@ -9,19 +9,10 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
-import com.vaadin.flow.i18n.LocaleChangeEvent;
-import com.vaadin.flow.i18n.LocaleChangeObserver;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-
-import java.util.Locale;
-
-import static java.util.Locale.forLanguageTag;
 
 @Route("mtf")
 @StyleSheet("/style.css")
@@ -33,7 +24,7 @@ public class MToF_Gui extends VerticalLayout {
     MToF_Service mToF_service;
 
     @Autowired
-    public MToF_Gui(MessageSource messageSource, MToF_Service meters_feets) {
+    public MToF_Gui(MToF_Service mToF_service) {//MessageSource messageSource,
         //this.messageSource = messageSource;
         this.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
@@ -51,14 +42,12 @@ public class MToF_Gui extends VerticalLayout {
 
         add(header);
 
-        NumberField meters;
-        NumberField cms;
-        meters = new NumberField("meters:");
+        NumberField meters = new NumberField("meters:");
         meters.setHasControls(true);
         meters.setMin(0);
         meters.setMax(99);
 
-        cms = new NumberField("cm's (0-100):");
+        NumberField cms = new NumberField("cm's (0-100):");
         cms.setHasControls(true);
         cms.setMin(0);
         cms.setMax(99);
@@ -91,9 +80,12 @@ public class MToF_Gui extends VerticalLayout {
       //  buttonCalculate = new Button(messageSource.getMessage("btn", new Object[]{}, Locale.forLanguageTag("pl")));
         buttonCalculate = new Button("Calculate");
         buttonCalculate.addClickListener((event -> {
-            equalsFoot.setText(
-                    String.valueOf((int) meters_feets.getDimmInFoot(meters.getValue(), cms.getValue())));
-            equalsInch.setText(String.valueOf(Integer.valueOf((int) meters_feets.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
+         //   equalsFoot.setText(
+//                    String.valueOf((int) mToF_service.getDimmInFoot(meters.getValue(), cms.getValue())));
+//            equalsInch.setText(String.valueOf(Integer.valueOf((int) mToF_service.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
+            equalsFoot.setText(String.valueOf(mToF_service.showDimmInFoot(meters.getValue(), cms.getValue())));
+           // equalsInch.setText(String.valueOf(Integer.valueOf((int) mToF_service.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
+
         }));
 
         HorizontalLayout metersCmsLayout = new HorizontalLayout(meters, cms);
@@ -109,15 +101,12 @@ public class MToF_Gui extends VerticalLayout {
         add(header2);
 
         NumberField numberFieldFoot = new NumberField("Feet'");
-
         numberFieldFoot.setHasControls(true);
-
         numberFieldFoot.setMin(0);
         numberFieldFoot.setMax(99);
 
         NumberField numberFieldInch = new NumberField("Inches\" (0\"-11\"):");
         numberFieldInch.setHasControls(true);
-
         numberFieldInch.setMin(0);
         numberFieldInch.setMax(11);
 
@@ -126,7 +115,7 @@ public class MToF_Gui extends VerticalLayout {
         Button buttonCalculateToMeters = new Button("Conversion");
 
         buttonCalculateToMeters.addClickListener((event -> {
-            equalsMeters.setText(String.valueOf(meters_feets.getDimInMeters(numberFieldFoot.getValue(), numberFieldInch.getValue())));
+            equalsMeters.setText(String.valueOf(mToF_service.getDimInMeters(numberFieldFoot.getValue(), numberFieldInch.getValue())));
         }));
 
         setAlignItems(Alignment.CENTER);

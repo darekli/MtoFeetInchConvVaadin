@@ -18,7 +18,6 @@ public class MToF_Service {
 //The Units of Measurement Regulations 1995
     //http://www.csgnetwork.com/csgcvtftin2meterscalc.html
 
-
     public int getDimmInFoot(double meters, double cms) {
         int foot = (int) Math.ceil((((meters + (cms / 100)) * ratioMtoF) % 1) * 12);
         double footFloor = Math.floor((meters + (cms / 100)) * ratioMtoF);
@@ -29,9 +28,6 @@ public class MToF_Service {
         }
     }
 
-
-
-
     public double getLeftDimmInInch(double meters, double cms) {
         int inches = (int) Math.ceil((((meters + (cms / 100)) * ratioMtoF) % 1) * 12);
         if (inches == 12) {
@@ -41,14 +37,10 @@ public class MToF_Service {
         }
     }
 
-    public String getDimInMeters(double foot, double inch) {
+    public double getDimInMeters(double foot, double inch) {
         double meters = foot * ratioFItoM + inch * ratioInchToFoot;
-        String StringMeters2f = String.format("%.2f", meters);
-        return String.valueOf(StringMeters2f);
-        //return meters; //for tests only
+        return meters;
     }
-
-
 }
 
 

@@ -119,7 +119,7 @@ public class MToF_Gui extends VerticalLayout {
             if(foot==null||inch==null||foot.isEmpty()||inch.isEmpty()){
                 showError();
             }else {
-                equalsMeters.setText(String.valueOf(mToF_service.getDimInMeters(foot.getValue(), inch.getValue())));
+                equalsMeters.setText(String.format("%.2f",mToF_service.getDimInMeters(foot.getValue(), inch.getValue())));
             }
         }));
 

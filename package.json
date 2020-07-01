@@ -102,6 +102,5 @@
       "webpack-dev-server": "3.10.3"
     },
     "hash": "ec926c086f38754af446187f4b78b7b6ca78d7f8c92127e34f91cc2da9cc11ce"
-  },
-  "vaadinAppPackageHash": "ce78f3bf06a594e5cdb27350deb0d70b8f7c89fb694dbb02110fe73fbdae04e8"
+  }
 }

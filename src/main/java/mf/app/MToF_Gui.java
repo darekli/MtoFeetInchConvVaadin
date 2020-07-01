@@ -6,6 +6,7 @@ import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.details.Details;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -80,12 +81,12 @@ public class MToF_Gui extends VerticalLayout {
       //  buttonCalculate = new Button(messageSource.getMessage("btn", new Object[]{}, Locale.forLanguageTag("pl")));
         buttonCalculate = new Button("Calculate");
         buttonCalculate.addClickListener((event -> {
-         //   equalsFoot.setText(
-//                    String.valueOf((int) mToF_service.getDimmInFoot(meters.getValue(), cms.getValue())));
-//            equalsInch.setText(String.valueOf(Integer.valueOf((int) mToF_service.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
-            equalsFoot.setText(String.valueOf(mToF_service.showDimmInFoot(meters.getValue(), cms.getValue())));
-           // equalsInch.setText(String.valueOf(Integer.valueOf((int) mToF_service.getLeftDimmInInch(meters.getValue(), cms.getValue()))));
-
+            if(meters==null||cms==null||meters.isEmpty()||cms.isEmpty()){
+                showError();
+            }else{
+                equalsFoot.setText((mToF_service.getDimmInFoot(meters.getValue(), cms.getValue()))+"\'");
+                equalsInch.setText((Integer.valueOf((int) mToF_service.getLeftDimmInInch(meters.getValue(), cms.getValue())))+"\"");
+            }
         }));
 
         HorizontalLayout metersCmsLayout = new HorizontalLayout(meters, cms);
@@ -100,27 +101,31 @@ public class MToF_Gui extends VerticalLayout {
 
         add(header2);
 
-        NumberField numberFieldFoot = new NumberField("Feet'");
-        numberFieldFoot.setHasControls(true);
-        numberFieldFoot.setMin(0);
-        numberFieldFoot.setMax(99);
+        NumberField foot = new NumberField("Feet'");
+        foot.setHasControls(true);
+        foot.setMin(0);
+        foot.setMax(99);
 
-        NumberField numberFieldInch = new NumberField("Inches\" (0\"-11\"):");
-        numberFieldInch.setHasControls(true);
-        numberFieldInch.setMin(0);
-        numberFieldInch.setMax(11);
+        NumberField inch = new NumberField("Inches\" (0\"-11\"):");
+        inch.setHasControls(true);
+        inch.setMin(0);
+        inch.setMax(11);
 
         H2 equalsMeters = new H2("Conversion to meters");
 
         Button buttonCalculateToMeters = new Button("Conversion");
 
         buttonCalculateToMeters.addClickListener((event -> {
-            equalsMeters.setText(String.valueOf(mToF_service.getDimInMeters(numberFieldFoot.getValue(), numberFieldInch.getValue())));
+            if(foot==null||inch==null||foot.isEmpty()||inch.isEmpty()){
+                showError();
+            }else {
+                equalsMeters.setText(String.valueOf(mToF_service.getDimInMeters(foot.getValue(), inch.getValue())));
+            }
         }));
 
         setAlignItems(Alignment.CENTER);
 
-        HorizontalLayout textFInchLayout = new HorizontalLayout(numberFieldFoot, numberFieldInch);
+        HorizontalLayout textFInchLayout = new HorizontalLayout(foot, inch);
 
         add(textFInchLayout);
 
@@ -133,9 +138,15 @@ public class MToF_Gui extends VerticalLayout {
 
         add(buttonCalculateToMeters, image);
         //add(addButtonBack());
-
-
     }
 
+    private void showError() {
+        Notification notification = Notification.show(
+                "Fields can not be empty");
+        notification.setDuration(3000);
+        notification.setPosition(Notification.Position.MIDDLE);
 
+        add(notification);
+    }
 }
+

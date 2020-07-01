@@ -19,28 +19,13 @@ public class MToF_Service {
     //http://www.csgnetwork.com/csgcvtftin2meterscalc.html
 
 
-//    public String getDimmInFoot(double meters, double cms) {
-//        if (meters == Double.parseDouble(null) || cms == Double.parseDouble(null)) {
-//           return showError();
-//        } else {
-//            return String.valueOf(showDimmInFoot(meters, cms));
-//        }
-//
-//        // return showDimmInFoot(meters,centimeters);
-//    }
-//
-//    private String showError() {
-//        Notification notification = Notification.show("Please enter a data");
-//        return String.valueOf(notification);
-//    }
-
-    double showDimmInFoot(double meters, double cms) {
+    public int getDimmInFoot(double meters, double cms) {
         int foot = (int) Math.ceil((((meters + (cms / 100)) * ratioMtoF) % 1) * 12);
         double footFloor = Math.floor((meters + (cms / 100)) * ratioMtoF);
         if (foot == 12) {
-            return footFloor + 1;
+            return (int) (footFloor + 1);
         } else {
-            return footFloor;
+            return (int) footFloor;
         }
     }
 
